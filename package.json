@@ -1,0 +1,21 @@
+{
+  "name": "travel-planner",
+  "version": "1.0.0",
+  "description": "Travel planner app to schedule flights, check weathers, etc.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backEnd/server.js",
+    "server": "nodemon backEnd/server.js"
+  },
+  "author": "Huy Tran",
+  "license": "MIT",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
