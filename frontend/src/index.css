@@ -1,0 +1,535 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .filter-display {
+    flex-direction: row;
+    margin: 0;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.search-container {
+  margin-bottom: 20px;
+}
+
+.search-input {
+  padding: 10px;
+  font-size: 16px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.weather-container {
+  display: flex;
+  justify-content: center;
+}
+
+.weather-details {
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pages {
+  width: 65.5em;
+  padding: 20px;
+  height: calc(100vh - 60px); /* Adjusted height to account for header */
+  position:absolute;
+  right: 5em;
+  margin-top: 70px;
+}
+
+.sidebar {
+  width: 300px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  height: calc(100vh - 60px); /* Adjusted height to account for header */
+  position: fixed;
+  left: 0;
+  margin-top: 0px;
+}
+
+.logo {
+  text-align: left;
+  margin-bottom: 40px;
+  padding: 10px;
+}
+
+.logo h1 {
+  font-size: 2.5rem;
+}
+
+.nav-links {
+  list-style: none;
+  padding: 0;
+}
+
+.logo-title{
+  padding-right: 10px;
+}
+
+.side-bar-logo{
+  font-size: 1.5em;
+  padding-top: 5px;
+  padding-left: 5px;
+}
+
+.sideBar-mainLogo{
+  font-size: 3em;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.logo-item{
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.link-item{
+    display: block;
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    text-align: left;
+    transition: background-color 0.3s;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 1.2rem;
+  display: block;
+  padding: 10px;
+  transition: background-color 0.3s;
+}
+
+.nav-item:hover {
+  background-color:coral;
+  border-radius: 5px;
+}
+
+/* Optional: Active link styling */
+/* .nav-item.active a {
+  background-color: #555;
+  border-radius: 5px;
+} */
+
+
+.time-text{
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+.time-num{
+  margin-right: 5px;
+}
+
+.filter-box{
+  background: rgb(0, 0, 0);
+  display: flex;
+  flex-direction: column;
+}
+
+
+.filter-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content:space-between;
+  padding: 20px;
+}
+
+
+.filter-input{
+  padding: 10px;
+  border: 2.5px solid #e6e6e6;
+  border-radius: 5px;
+  font-family: inherit;
+  width: 30em;
+  height: 43px;
+}
+
+.filter-input-date{
+  padding: 10px;
+  border: 2.5px solid #e6e6e6;
+  border-radius: 5px;
+  font-family: inherit;
+  width: 25em;
+  height: 43px;
+}
+
+.filter-display {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 1em;
+}
+
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 1em;
+}
+
+.input-container-date{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 1em;
+  visibility: hidden;
+}
+
+.tripWay{
+  margin-left: 40px;
+}
+
+
+label {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+
+.input-container button {
+  margin-top: 30px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  width: 16.5em;
+  height: 43px;
+}
+
+.cost-info button {
+  margin-top: 30px;
+  margin-left: 15px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 20px;
+  cursor: pointer;
+  width: 5.5em;
+  height: 43px;
+}
+
+.input-options{
+  margin-top: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  color: white;
+}
+
+.radio-text{
+  margin-left: 5px;
+}
+
+#dropdown {
+  border: 2.5px solid #e6e6e6;
+  width: 30em;
+  height: 43px;
+}
+
+/* Add a class to target the flight offer list */
+.flight-offers-list {
+  list-style: none;
+  padding: 0;
+}
+
+/* Style each flight offer item */
+.flight-offer-item {
+  background-color: #f4f4f4;
+  margin: 10px 0;
+  padding: 20px 0 10px;
+  position: relative;
+  border-radius: 5px;
+  border: 1px solid #e6e6e6;
+}
+
+.flight-offer-item p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.flight-offer-segments {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.flight-offer-segment {
+  margin-bottom: 5px;
+}
+
+.flight-offer-price {
+  font-weight: bold;
+  color: #000;
+}
+
+.flight-info{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin: 1.5em;
+}
+.cost-info{
+  justify-content: center;
+  align-items: center;
+  margin: 2.5em;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+p {
+  line-height: 1.7;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  line-height: 2.2;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid #e6e6e6;
+  margin-bottom: 0px;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1000;
+}
+
+.header ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header ul li {
+  margin-left: 20px;
+}
+
+.header ul li a {
+  display: flex;
+  align-items: center;
+}
+
+.header ul li a:hover {
+  color: #777;
+}
+
+.header ul li a svg {
+  margin-right: 5px;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  padding: 0 20px;
+}
+
+.heading p {
+  color: #828282;
+}
+
+.goals {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.goal {
+  background-color: #f4f4f4;
+  margin: 10px 0;
+  padding: 20px 0 10px;
+  position: relative;
+}
+
+.goal .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.form {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.content{
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-family: inherit;
+}
+
+.form-group label {
+  text-align: left;
+  display: block;
+  margin: 0 0 5px 3px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: #000;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn svg {
+  margin-right: 8px;
+}
+
+.btn-reverse {
+  background: #fff;
+  color: #000;
+}
+
+.btn-block {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  transform: scale(0.98);
+}
+
+.loadingSpinnerContainer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loadingSpinner {
+  width: 64px;
+  height: 64px;
+  border: 8px solid;
+  border-color: #000 transparent #555 transparent;
+  border-radius: 50%;
+  animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    width: 90%;
+  }
+
+  .heading h1 {
+    font-size: 2rem;
+  }
+
+  .heading p {
+    font-size: 1.5rem;
+  }
+}
