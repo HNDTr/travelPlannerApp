@@ -9,25 +9,30 @@ import Weather from './pages/Weather'
 import Itineraries from './pages/Itineraries'
 import Sidebar from './components/sideBar'
 import { useSelector } from 'react-redux'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const { user } = useSelector((state) => state.auth);
 
   return (
     <Router>
-      <div className='container'>
+      <div className='content'>
         {!user && < Header />}
         <div className='content'>
-          {user && <Sidebar />} {/* Render the Sidebar only when the user is logged in */}
-          <Routes>
-            <Route path='/' element={<Dashboard />} />
-            {user && <Route path='/flights' element={<FlightOffers />} />}
-            <Route path='/accommodation' element={<Accommodation />} />
-            <Route path='/itineraries' element={<Itineraries />} />
-            <Route path='/weather' element={<Weather />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
-          </Routes>
+          <div>
+            {user && <Sidebar />} {/* Render the Sidebar only when the user is logged in */}
+          </div>
+          <div>
+            <Routes>
+              <Route path='/' element={<Dashboard />} />
+              {user && <Route path='/flights' element={<FlightOffers />} />}
+              {user && <Route path='/accommodation' element={<Accommodation />} />}
+              {user && <Route path='/itineraries' element={<Itineraries />} />}
+              {user && <Route path='/weather' element={<Weather />} />}
+              <Route path='/register' element={<Register />} />
+              <Route path='/login' element={<Login />} />
+            </Routes>
+          </div>
         </div>
       </div>
     </Router>

@@ -33,8 +33,8 @@ function FlightOffers() {
                   adults,
               }
           });
-          const data = response.data;
-          setFlightOffers(data.data);
+          const {data} = response.data;
+          setFlightOffers(data);
       } catch (error) {
           console.error('Error fetching flight offers:', error);
       }
@@ -45,6 +45,7 @@ function FlightOffers() {
           ...prevState,
           [e.target.name]: e.target.value,
       }));
+      console.log(formData)
   };
 
   const onClick = (e) => {

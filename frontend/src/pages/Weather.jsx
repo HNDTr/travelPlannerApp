@@ -31,7 +31,6 @@ function Weather() {
         },
       });
       const { data } = response;
-      console.log(data);
       setWeatherDetails(data);
     } catch (error) {
       console.error('Error fetching weather:', error);

@@ -23,6 +23,8 @@ const getFlightOffers = async (req, res, next) => {
   }
 };
 
+
+
 module.exports = {
   getFlightOffers,
 };
