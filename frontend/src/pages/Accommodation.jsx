@@ -69,9 +69,11 @@ function Accommodation() {
 
   return (
       <div className="pages">
+        <div className='search-container'>
           <h1>Hotel Search</h1>
-            <div className='row g-3'>
-              <div className="col">
+            <div className='input-container'>
+              <div className='input-group'>
+              <div className='input-item'> 
                 <label htmlFor="originLocationCode">City</label>
                 <input
                     type="text"
@@ -82,9 +84,9 @@ function Accommodation() {
                 />
                  {formErrors.cityCode && <div className="error-message text-danger">{formErrors.cityCode}</div>}
               </div>
-              <div className="col">
+              <div className='input-item'>
                 <label htmlFor='dropdown'>Rating</label>
-                <select id="dropdown" name='ratings' onChange={onChange}>
+                <select defaultValue="4" id="dropdown" name='ratings' onChange={onChange}>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -92,7 +94,9 @@ function Accommodation() {
                     <option value="5">5</option>
                 </select>
               </div>
-              <div className='col'>
+              </div>
+              <div className='input-group'>
+              <div className='input-item'>
                 <label htmlFor="amenities">Filter Amenities:</label>
                 <select
                     className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
@@ -100,7 +104,7 @@ function Accommodation() {
                     name="amenities"
                     onChange={onChange}
                 >
-                    <option selected>Services</option>
+                    <option defaultValue>Services</option>
                     <option value="SPA">SPA</option>
                     <option value="RESTAURANT">Restaurant</option>
                     <option value="SWIMMING_POOL">Swimming Pool</option>
@@ -109,15 +113,16 @@ function Accommodation() {
                     <option value="BAR or LOUNGE">Bar or Lounge</option>
                 </select>
             </div>
-              <div className="col">
+              <div className='input-item'>
                   <button onClick={fetchHotelOffers}>Search</button>
               </div>
-
             </div>
+          </div>
+          </div>
             {hotelOffers ? (
               <div>
               {hotelOffers.map((offer) => (
-                <div key={offer.hotelId}>
+                <div key={offer.hotelId} className='hotel-offer'>
                     <div>
                         <strong>{offer.name}</strong>
                         <span>Rating: {offer.rating}</span>

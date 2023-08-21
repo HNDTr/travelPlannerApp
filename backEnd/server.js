@@ -15,6 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/users', require('./routes/userRoutes'));
+app.use('/api/itineraries', require('./routes/itineraryRoutes'));
 app.use('/api', [
     require('./routes/flightRoutes'),
     require('./routes/hotelRoutes'),

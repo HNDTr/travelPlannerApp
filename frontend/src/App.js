@@ -19,10 +19,7 @@ function App() {
       <div className='content'>
         {!user && < Header />}
         <div className='content'>
-          <div>
             {user && <Sidebar />} {/* Render the Sidebar only when the user is logged in */}
-          </div>
-          <div>
             <Routes>
               <Route path='/' element={<Dashboard />} />
               {user && <Route path='/flights' element={<FlightOffers />} />}
@@ -32,7 +29,6 @@ function App() {
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<Login />} />
             </Routes>
-          </div>
         </div>
       </div>
     </Router>

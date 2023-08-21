@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {TbTemperatureCelsius, TbTemperatureFahrenheit} from 'react-icons/tb'
@@ -22,7 +22,7 @@ function Weather() {
 
   const { cityName } = formData;
 
-  const fetchWeathers = async () => {
+  const fetchWeathers = useCallback(async () => {
     try {
       const response = await axios.get('/api/weathers', {
         params: {
@@ -35,7 +35,7 @@ function Weather() {
     } catch (error) {
       console.error('Error fetching weather:', error);
     }
-  };
+  }, [cityName, tempUnits]);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +53,7 @@ function Weather() {
     if (tempUnits) {
       fetchWeathers();
     }
-  }, [tempUnits]);
+  }, [tempUnits, fetchWeathers]);
 
   useEffect(() => {
     if (!user) {
@@ -65,24 +65,34 @@ function Weather() {
 
   return (
     <div className="pages">
-      <h1>Weather</h1>
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          name="cityName"
-          placeholder="Enter city name"
-          onChange={onChange}
-        />
-        <button className="search-button" onClick={fetchWeathers}>
-          Search
-        </button>
-      </div>
-      <div>
-        <input type="radio" name='units' value='imperial' checked={tempUnits==='imperial'} onClick={onClick}/>Farenheit
-        <TbTemperatureFahrenheit></TbTemperatureFahrenheit>
-        <input type="radio" name='units' value='metric' checked={tempUnits==='metric'} onClick={onClick}/>Celcius
-        <TbTemperatureCelsius></TbTemperatureCelsius>
+      <div className='search-container-weather'>
+        <h1>Weather</h1>
+        <div className='input-container-weather'>
+          <div className='search-box'>
+            <input
+              type='text'
+              className='search-input'
+              name='cityName'
+              placeholder='Enter city name'
+              onChange={onChange}
+            />
+            {/* <button className='search-button' onClick={fetchWeathers}>
+              Search
+            </button> */}
+          </div>
+          <div className='radio-input-weather'>
+            <div className='radio-group'>
+              <input type='radio' name='units' value='imperial' defaultChecked={tempUnits === 'imperial'} onClick={onClick} />
+              <label>Fahrenheit</label>
+            </div>
+            <TbTemperatureFahrenheit></TbTemperatureFahrenheit>
+            <div className='radio-group'>
+              <input type='radio' name='units' value='metric' defaultChecked={tempUnits === 'metric'} onClick={onClick} />
+              <label>Celsius</label>
+            </div>
+            <TbTemperatureCelsius></TbTemperatureCelsius>
+          </div>
+        </div>
       </div>
       <div className="weather-container">
         {name && (
