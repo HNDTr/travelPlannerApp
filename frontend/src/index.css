@@ -225,7 +225,7 @@ button:hover {
 
 /*-------------FlightOffers-------------------*/
 /* Header */
-.header {
+.header-flight {
   text-align: center;
   margin-bottom: 20px;
 }
@@ -517,6 +517,28 @@ h3 {
   text-align: center;
 }
 
+.dashImg{
+  width: 50%;
+  height: auto;
+}
+
+.dashName{
+  margin-top: 50px;
+  margin-bottom: 10px;
+  font-size: 50px;
+}
+
+.dashButton{
+  color: #000;
+  background-color: coral;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.dashButtonContainer{
+  margin-top: 30px;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -531,6 +553,12 @@ h3 {
   z-index: 1000;
 }
 
+.header-logo{
+  margin-left: 20px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
 .header ul {
   display: flex;
   align-items: center;
@@ -539,6 +567,8 @@ h3 {
 
 .header ul li {
   margin-left: 20px;
+  margin-right: 20px;
+  font-size: 20px;
 }
 
 .header ul li a {
@@ -560,6 +590,7 @@ h3 {
   margin-top: 100px;
   margin-bottom: 50px;
   padding: 0 20px;
+  text-align: center;
 }
 
 .heading p {

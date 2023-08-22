@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Spinner from '../components/Spinner';
+import { createItinerary } from '../features/itineraries/itinerarySlice';
 import axios from 'axios';
 
 function FlightOffers() {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
     const { user } = useSelector((state) => state.auth);
+    const [isLoading, setIsLoading] = useState(false); 
 
     const [formData, setFormData] = useState({
       originLocationCode: '',
@@ -22,8 +26,24 @@ function FlightOffers() {
 
   const { originLocationCode, destinationLocationCode, departureDate, returnDate, adults } = formData;
 
+  const [formErrors, setFormErrors] = useState({
+    originLocationCode: '',
+    destinationLocationCode: '',
+    departureDate: '',
+  });
+
   const fetchFlightOffers = async () => {
+    if (!originLocationCode || !destinationLocationCode || !departureDate) {
+      // Set errors for the fields that are not filled out
+      setFormErrors({
+        originLocationCode: originLocationCode ? '' : 'Location code is required',
+        destinationLocationCode: destinationLocationCode ? '' : 'Destination code is required',
+        departureDate: departureDate ? '' : 'Departure date is required'
+      });
+      return;
+    }
       try {
+          setIsLoading(true); 
           const response = await axios.get(`/api/flights`, {
               params: {
                   originLocationCode,
@@ -37,15 +57,43 @@ function FlightOffers() {
           setFlightOffers(data);
       } catch (error) {
           console.error('Error fetching flight offers:', error);
+      } finally {
+        setIsLoading(false); // Set isLoading back to false after the API call
       }
  };
+
+
+  const today = new Date().toISOString().split('T')[0];
+
+  // Handle save button click
+  const handleSave = (offer) => {
+    const { itineraries } = offer;
+    const departureTime = itineraries[0].segments[0].departure.at;
+    const origin = itineraries[0].segments[0].departure.iataCode
+    const to = itineraries[0].segments[0].arrival.iataCode
+    const to2 = itineraries[0].segments[1].arrival.iataCode
+    const [datePart, timePart] = departureTime.split("T");
+
+    const itineraryData = {
+      title: `${to2 ? origin + "-" + to2  : (origin +  "-" + to)}`,
+      travelDate: datePart,    // Pass the departure date
+      time: timePart,    // Pass the departure time
+    };
+
+      dispatch(createItinerary(itineraryData))
+  };
 
   const onChange = (e) => {
       setFormData((prevState) => ({
           ...prevState,
           [e.target.name]: e.target.value,
       }));
-      console.log(formData)
+
+      // Clear the error for the current field
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [e.target.name]: '',
+      }));
   };
 
   const onClick = (e) => {
@@ -59,10 +107,13 @@ function FlightOffers() {
       }
   }, [user, navigate]);
 
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="pages">
-    <h1 className="header">Flight Offers</h1>
+    <h1 className="header-flight">Flight Offers</h1>
     <div className="search-form">
       <div className="input-group-radio">
         <label className="radio-label">
@@ -98,6 +149,7 @@ function FlightOffers() {
             onChange={onChange}
             className="filter-input"
           />
+        {formErrors.originLocationCode && <div className="error-message text-danger">{formErrors.originLocationCode}</div>}
         </div>
         <div className="input-item">
           <label htmlFor="destinationLocationCode">To</label>
@@ -108,6 +160,7 @@ function FlightOffers() {
             onChange={onChange}
             className="filter-input"
           />
+          {formErrors.destinationLocationCode&& <div className="error-message text-danger">{formErrors.destinationLocationCode}</div>}
         </div>
       </div>
       <div className="input-group">
@@ -118,7 +171,9 @@ function FlightOffers() {
             name="departureDate"
             onChange={onChange}
             className="input-item"
+            min={today}
           />
+          {formErrors.departureDate&& <div className="error-message text-danger">{formErrors.departureDate}</div>}
         </div>
         <div
           className="input-item return-date"
@@ -130,6 +185,7 @@ function FlightOffers() {
             name="returnDate"
             onChange={onChange}
             className="filter-input-date"
+            min={today}
           />
         </div>
       </div>
@@ -161,7 +217,7 @@ function FlightOffers() {
       </div>
     </div>
     <div className="flight-offers-list">
-      {flightOffers.map((offer, index) => (
+      {flightOffers ? (flightOffers.map((offer, index) => (
         <div key={index} className="flight-offer-item">
           <div className="flight-offer-segments">
             <div className="flight-info">
@@ -190,13 +246,13 @@ function FlightOffers() {
                 </p>
               )}
               <div className="action-buttons">
-                <button className="save-button">Save</button>
+                <button className="save-button"  onClick={() => handleSave(offer)}>Save</button>
                 <button className="book-button">Book</button>
               </div>
             </div>
           </div>
         </div>
-      ))}
+      ))) : (<h1>No flight offers</h1>)}
     </div>
   </div>  
   );

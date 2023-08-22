@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Spinner from '../components/Spinner';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Accommodation() {
     const navigate = useNavigate();
     const { user } = useSelector((state) => state.auth);
+    const [isLoading, setIsLoading] = useState(false); 
 
     const [formData, setFormData] = useState({
       cityCode:'',
@@ -32,6 +34,7 @@ function Accommodation() {
       return;
     }
       try {
+        setIsLoading(true);
           const response = await axios.get(`/api/hotels`, {
               params: {
                   cityCode,
@@ -40,10 +43,11 @@ function Accommodation() {
               }
           });
           const {data} = response.data;
-          console.log(data)
           setHotelOffers(data);
       } catch (error) {
           console.error('Error fetching hotel offers:', error);
+      } finally {
+        setIsLoading(false)
       }
   };
 
@@ -65,6 +69,10 @@ function Accommodation() {
           navigate('/login');
       }
   }, [user, navigate]);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
 
   return (

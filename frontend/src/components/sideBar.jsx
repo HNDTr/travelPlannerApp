@@ -32,7 +32,7 @@ function Sidebar() {
                 <MdDashboard></MdDashboard>
             </div>
             <div>
-                <Link to='/' className='link-item'>
+                <Link to='/dashboard' className='link-item'>
                     Dashboard
                 </Link>
             </div>
@@ -82,7 +82,7 @@ function Sidebar() {
                 <FaSignOutAlt></FaSignOutAlt>
             </div>
             <div>
-                <Link onClick={onLogout} className='link-item'>   
+                <Link onClick={onLogout} to='/login' className='link-item'>   
                     Logout
                 </Link>
             </div>

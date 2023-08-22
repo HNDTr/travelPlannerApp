@@ -5,14 +5,14 @@ function Header() {
 
   return (
     <header className="header">
-        <div className="logo">
-            <Link to='/'>Portal</Link>
+        <div className="header-logo">
+            <Link to='/'>Orbit</Link>
         </div>
         <ul>
             <>
                 <li>
                     <Link to='/login'>
-                        <FaSignInAlt></FaSignInAlt>Login
+                        <FaSignInAlt></FaSignInAlt>Sign in
                     </Link>
                 </li>
                 <li>

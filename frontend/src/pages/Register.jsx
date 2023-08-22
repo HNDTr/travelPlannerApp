@@ -65,7 +65,7 @@ function Register() {
     <>
     <section className="heading"> 
         <h1>
-            <FaUser></FaUser>Register
+            <FaUser></FaUser>Register account
         </h1>
         <p>Please create an account</p>
     </section>
@@ -84,7 +84,7 @@ function Register() {
             <div className="form-group">
                 <input type="password" className="form-control" id="password2" name="password2" value={password2} placeholder="Confirm password" onChange={onChange}/>
             </div>
-            <div className="form-control">
+            <div className="">
                 <button type="submit" className="btn btn-block">
                     Submit
                 </button>

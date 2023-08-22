@@ -25,7 +25,7 @@ function Login() {
             toast.error(message)
         }
         if (isSuccess || user) {
-            navigate('/')
+            navigate('/dashboard')
         }
 
         dispatch(reset())
@@ -57,7 +57,7 @@ function Login() {
     <>
         <section className="heading">
             <h1>
-                <FaSignInAlt></FaSignInAlt>Login
+                <FaSignInAlt></FaSignInAlt>Sign in
             </h1>
             <p>Login and start your journey!</p>
         </section>

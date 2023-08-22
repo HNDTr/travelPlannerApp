@@ -17,7 +17,6 @@ function ItineraryItem({itinerary}) {
  
      // Function to handle save
     const handleSave = () => {
-        console.log("Handle Save triggered");
         const updatedData = {
             title: updatedTitle,
             travelDate: updatedTravelDate,
@@ -25,7 +24,6 @@ function ItineraryItem({itinerary}) {
             time: updatedTime,
             description: updatedDescription
         };
-        console.log("Updated data:", updatedData);
         dispatch(updateItinerary({id: itinerary._id, Data: updatedData}));
         setIsEditing(false); // Exit edit mode
     };
