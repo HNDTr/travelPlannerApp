@@ -53,7 +53,6 @@ export const deleteItinerary = createAsyncThunk('itinerary/delete', async (id, t
 
 // Update user itinerary
 export const updateItinerary = createAsyncThunk('itinerary/update', async ({id, Data},thunkAPI) => {
-      console.log('Update Itinerary Thunk:', id, Data);
   try {
       const token = thunkAPI.getState().auth.user.token
       return await itineraryService.updateItinerary(id, Data, token)
@@ -116,11 +115,9 @@ export const itinerarySlice = createSlice({
           state.message = action.payload
         })
         .addCase(updateItinerary.pending, (state) => {
-          console.log("Updating itinerary pending...");
           state.isLoading = true
         })
         .addCase(updateItinerary.fulfilled, (state, action) => {
-          console.log("Updating itinerary fulfilled:", action.payload);
           state.isLoading = false
           state.isSuccess = true
           state.itineraries = state.itineraries.map(itinerary =>
@@ -128,7 +125,6 @@ export const itinerarySlice = createSlice({
           );
         })
         .addCase(updateItinerary.rejected, (state, action) => {
-          console.log("Updating itinerary rejected:", action.payload);
           state.isLoading = false
           state.isError = true
           state.message = action.payload

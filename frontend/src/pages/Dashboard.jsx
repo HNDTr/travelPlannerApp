@@ -17,7 +17,7 @@ function Dashboard() {
   return (
     <div className="pages">
       <div className='container'>
-        <h4 className='dashName'>Welcome {user.name.split(' ')[0]}</h4>
+        {user && <h4 className='dashName'>Welcome {user.name.split(' ')[0]}</h4>}
         <img className='dashImg' src={dashboardImage} alt='DashBoard Img'/>
         <div className='dashButtonContainer'>
           <Link to='/flights' className='dashButton'>

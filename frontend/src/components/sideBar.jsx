@@ -1,7 +1,7 @@
 import {FaSignOutAlt, FaBookmark} from 'react-icons/fa'
 import { logout, reset } from '../features/auth/authSlice'
 import { useDispatch } from 'react-redux'
-import { Link} from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import {TiWeatherCloudy} from 'react-icons/ti'
 import {MdFlightTakeoff, MdLocalHotel, MdDashboard} from 'react-icons/md'
 import {SiYourtraveldottv} from 'react-icons/si'
@@ -82,7 +82,7 @@ function Sidebar() {
                 <FaSignOutAlt></FaSignOutAlt>
             </div>
             <div>
-                <Link onClick={onLogout} to='/login' className='link-item'>   
+                <Link onClick={onLogout} to='/' className='link-item'>   
                     Logout
                 </Link>
             </div>
